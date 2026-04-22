@@ -1,0 +1,126 @@
+/* Paleta de Cores e Fontes */
+:root {
+    --cor-fundo: #FAFAFA; /* Branco quebrado */
+    --cor-texto: #4A4A4A; /* Cinza escuro para leitura */
+    --cor-destaque: #657D42; /* Verde dos títulos e botões das suas fotos */
+    --cor-card: #FFFFFF;
+    --cor-borda: #EAE6D7; /* Bege/Areia bem claro */
+    --fonte-principal: 'Georgia', serif; /* Traz um ar elegante/clássico */
+    --fonte-secundaria: 'Arial', sans-serif;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+    font-family: var(--fonte-secundaria);
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    max-width: 600px;
+}
+
+header h1 {
+    color: var(--cor-destaque);
+    font-family: var(--fonte-principal);
+    font-size: 2.5rem;
+}
+
+/* Onde os cards vão ficar */
+.container-lista {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 800px; /* Largura máxima para não esticar muito no PC */
+}
+
+/* O visual de cada presente */
+.card-presente {
+    background-color: var(--cor-card);
+    border: 1px solid var(--cor-borda);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+}
+
+.card-presente img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card-presente h3 {
+    font-family: var(--fonte-principal);
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.card-presente a {
+    color: var(--cor-destaque);
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
+/* Área do Formulário de Reserva */
+.reserva-form {
+    margin-top: 15px;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+}
+
+.reserva-form input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--cor-borda);
+    border-radius: 6px;
+    outline: none;
+}
+
+.reserva-form button {
+    background-color: var(--cor-destaque);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.reserva-form button:hover {
+    background-color: #4f6333;
+}
+
+.reservado {
+    margin-top: 15px;
+    font-style: italic;
+    color: #888;
+    background-color: #f0f0f0;
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: inline-block;
+}
+
+/* Ajuste para Celulares */
+@media (max-width: 600px) {
+    .card-presente {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .reserva-form {
+        flex-direction: column;
+    }
+}
