@@ -224,8 +224,8 @@
                 
                 if (match && match[1]) {
                     const idDaImagem = match[1];
-                    // Retorna o link formatado para visualização direta de imagem
-                    return `https://drive.google.com/uc?export=view&id=${idDaImagem}`;
+                    // NOVO FORMATO: Usa a API de Thumbnail do Google Drive (w500 = largura de 500px para ficar com qualidade)
+                    return `https://drive.google.com/thumbnail?id=${idDaImagem}&sz=w500`;
                 }
             }
             // Se não for link do drive ou falhar, retorna o link original
