@@ -3,23 +3,327 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Casamento</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Chá de Panela Leticia e Lucas</title>
+    
+    <!-- Importando a fonte clássica que aparece no seu print -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,600&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- ESTILOS (O antigo style.css) --- */
+        :root {
+            --cor-fundo: #FFFFFF;
+            --cor-texto: #333333;
+            --cor-verde-destaque: #5B8246; /* Verde folha do seu print */
+            --cor-borda: #E8E5DF; /* Bege/Cinza bem claro */
+            --cor-fundo-card: #FFFFFF;
+            --fonte-titulos: 'Playfair Display', serif;
+            --fonte-textos: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: var(--cor-fundo);
+            color: var(--cor-texto);
+            font-family: var(--fonte-textos);
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Cabeçalho */
+        header {
+            text-align: center;
+            max-width: 800px;
+            margin-bottom: 50px;
+        }
+
+        header h1 {
+            color: var(--cor-verde-destaque);
+            font-family: var(--fonte-titulos);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .aviso {
+            background-color: #F8F6F0; /* Cor palha/areia clara */
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 4px solid var(--cor-verde-destaque);
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: #444;
+        }
+
+        /* Container da Lista */
+        .container-lista {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Card do Presente */
+        .card-presente {
+            background-color: var(--cor-fundo-card);
+            border: 1px solid var(--cor-borda);
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: transform 0.2s ease;
+        }
+
+        .card-presente:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .card-presente img {
+            width: 130px;
+            height: 130px;
+            object-fit: contain; /* Para não cortar a panela */
+            border-radius: 8px;
+            background-color: #FDFDFD;
+            padding: 10px;
+            border: 1px solid #F0F0F0;
+        }
+
+        .detalhes-presente {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .detalhes-presente h3 {
+            font-family: var(--fonte-titulos);
+            font-size: 1.4rem;
+            margin: 0;
+            color: #222;
+        }
+
+        .detalhes-presente a {
+            color: var(--cor-verde-destaque);
+            text-decoration: underline;
+            font-size: 0.95rem;
+        }
+
+        /* Área de Ação (Input e Botão) */
+        .area-acao {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-width: 250px;
+        }
+
+        .area-acao input {
+            padding: 12px 15px;
+            border: 1px solid var(--cor-borda);
+            border-radius: 8px;
+            outline: none;
+            font-family: var(--fonte-textos);
+            font-size: 1rem;
+        }
+
+        .area-acao input:focus {
+            border-color: var(--cor-verde-destaque);
+        }
+
+        .area-acao button {
+            background-color: var(--cor-verde-destaque);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: background-color 0.2s;
+        }
+
+        .area-acao button:hover {
+            background-color: #4A6B38;
+        }
+
+        .reservado-texto {
+            font-family: var(--fonte-titulos);
+            font-size: 1.2rem;
+            color: #666;
+            text-align: right;
+            padding-right: 20px;
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #888;
+            padding: 40px;
+        }
+
+        /* Responsivo (Celulares) */
+        @media (max-width: 768px) {
+            .card-presente {
+                flex-direction: column;
+                text-align: center;
+                padding: 25px 15px;
+            }
+            .reservado-texto {
+                text-align: center;
+                padding-right: 0;
+            }
+            .area-acao {
+                width: 100%;
+                min-width: unset;
+            }
+        }
+    </style>
 </head>
 <body>
 
     <header>
-        <h1>Lista de Presentes 🤍</h1>
-        <p>Obs: os presentes devem ser de acordo com a paleta das cores branco, areia, bege e palha</p>
+        <h1>Chá de Panela Leticia e Lucas 💚</h1>
+        <p>Seja muito bem-vindo(a)! Estamos muito felizes em compartilhar esse momento especial com você.<br><br>
+        <i>Escolha o presente com carinho 💍</i></p>
+        
+        <div class="aviso">
+            Obs: os presentes devem seguir a paleta das cores branco, areia, bege e palha 🤍
+        </div>
     </header>
 
     <main>
         <div id="lista-presentes" class="container-lista">
-            Carregando presentes...
+            <div class="loading">Carregando lista de presentes com muito carinho...</div>
         </div>
     </main>
 
-    <script src="script.js"></script>
-    
+    <script>
+        /* --- JAVASCRIPT (O antigo script.js) --- */
+        
+        // 🚨 COLOQUE A SUA URL DO APPS SCRIPT AQUI ENTRE AS ASPAS:
+        const api_url = 'https://script.google.com/macros/s/AKfycbw9IeWBggohg9-SrUf4m01topCrcY1qHvafSH1iJU9W-6k-JPqJ9Ccb60GxLtgjQpIf/exec'; 
+
+        // Função mágica para consertar as imagens do Google Drive
+        function extrairImagemDireta(url) {
+            if (!url) return '';
+            
+            // Verifica se é um link padrão do Google Drive
+            if (url.includes('drive.google.com')) {
+                // Tenta extrair o ID usando Expressão Regular
+                const regexID = /\/d\/([a-zA-Z0-9_-]+)/;
+                const match = url.match(regexID);
+                
+                if (match && match[1]) {
+                    const idDaImagem = match[1];
+                    // Retorna o link formatado para visualização direta de imagem
+                    return `https://drive.google.com/uc?export=view&id=${idDaImagem}`;
+                }
+            }
+            // Se não for link do drive ou falhar, retorna o link original
+            return url;
+        }
+
+        async function carregarPresentes() {
+            try {
+                const resposta = await fetch(api_url);
+                const dados = await resposta.json();
+                
+                const container = document.getElementById('lista-presentes');
+                container.innerHTML = ''; 
+
+                dados.forEach(item => {
+                    // Pula linhas em branco na planilha
+                    if(!item.ID) return; 
+
+                    const card = document.createElement('div');
+                    card.className = 'card-presente';
+                    
+                    const estaReservado = item.Comprado_por && item.Comprado_por.trim() !== '';
+                    const urlImagemCorrigida = extrairImagemDireta(item.Imagem_URL);
+
+                    // Cria a estrutura visual (HTML) de dentro de cada card
+                    let htmlInterno = `
+                        <img src="${urlImagemCorrigida}" alt="${item.Item}" onerror="this.src='https://via.placeholder.com/130?text=Sem+Foto'">
+                        
+                        <div class="detalhes-presente">
+                            <h3>${item.Item}</h3>
+                            <a href="${item.Link_Sugestao}" target="_blank">Caso queira uma sugestão de onde comprar o presente só entrar no link ❤️</a>
+                        </div>
+                    `;
+
+                    // Lógica: Mostra nome de quem reservou OU mostra formulário
+                    if (estaReservado) {
+                        htmlInterno += `<div class="reservado-texto">${item.Comprado_por}</div>`;
+                    } else {
+                        htmlInterno += `
+                            <div class="area-acao">
+                                <input type="text" id="nome-${item.ID}" placeholder="Seu nome">
+                                <button onclick="reservarItem('${item.ID}', this)">Confirmar Presente</button>
+                            </div>
+                        `;
+                    }
+
+                    card.innerHTML = htmlInterno;
+                    container.appendChild(card);
+                });
+
+            } catch (erro) {
+                document.getElementById('lista-presentes').innerHTML = 
+                    '<div class="loading">Houve um erro ao carregar a lista. Atualize a página.</div>';
+                console.error("Erro ao buscar dados:", erro);
+            }
+        }
+
+        async function reservarItem(id, botaoClicado) {
+            const inputNome = document.getElementById(`nome-${id}`);
+            const nome = inputNome.value;
+            
+            if (!nome) {
+                alert("Por favor, digite seu nome antes de confirmar.");
+                inputNome.focus();
+                return;
+            }
+
+            // Muda o texto do botão para dar feedback visual
+            const textoOriginal = botaoClicado.innerText;
+            botaoClicado.innerText = "Reservando...";
+            botaoClicado.disabled = true;
+
+            const payload = {
+                "ID": id,
+                "Comprado_por": nome
+            };
+
+            try {
+                const resposta = await fetch(api_url, {
+                    method: 'POST',
+                    body: JSON.stringify(payload)
+                });
+
+                if (resposta.ok) {
+                    alert("Obrigado! Presente reservado com sucesso.");
+                    carregarPresentes(); // Recarrega a lista para mostrar a reserva
+                } else {
+                    throw new Error("Erro na resposta do servidor");
+                }
+            } catch (erro) {
+                alert("Houve um erro de conexão. Tente novamente.");
+                botaoClicado.innerText = textoOriginal;
+                botaoClicado.disabled = false;
+            }
+        }
+
+        // Inicia o carregamento quando o arquivo é aberto
+        carregarPresentes();
+    </script>
 </body>
 </html>
